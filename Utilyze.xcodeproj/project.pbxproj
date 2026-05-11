@@ -24,25 +24,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B4B3F43E2FB2682400967326 /* app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4B3F44B2FB2682600967326 /* appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = appTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4B3F4552FB2682600967326 /* appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = appUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4B3F43E2FB2682400967326 /* Utilyze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Utilyze.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4B3F44B2FB2682600967326 /* UtilyzeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UtilyzeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4B3F4552FB2682600967326 /* UtilyzeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UtilyzeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B4B3F4402FB2682400967326 /* app */ = {
+		B4B3F4402FB2682400967326 /* Utilyze */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = app;
+			path = Utilyze;
 			sourceTree = "<group>";
 		};
-		B4B3F44E2FB2682600967326 /* appTests */ = {
+		B4B3F44E2FB2682600967326 /* UtilyzeTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = appTests;
+			path = UtilyzeTests;
 			sourceTree = "<group>";
 		};
-		B4B3F4582FB2682600967326 /* appUITests */ = {
+		B4B3F4582FB2682600967326 /* UtilyzeUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = appUITests;
+			path = UtilyzeUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +75,9 @@
 		B4B3F4352FB2682400967326 = {
 			isa = PBXGroup;
 			children = (
-				B4B3F4402FB2682400967326 /* app */,
-				B4B3F44E2FB2682600967326 /* appTests */,
-				B4B3F4582FB2682600967326 /* appUITests */,
+				B4B3F4402FB2682400967326 /* Utilyze */,
+				B4B3F44E2FB2682600967326 /* UtilyzeTests */,
+				B4B3F4582FB2682600967326 /* UtilyzeUITests */,
 				B4B3F43F2FB2682400967326 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,9 +85,9 @@
 		B4B3F43F2FB2682400967326 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B4B3F43E2FB2682400967326 /* app.app */,
-				B4B3F44B2FB2682600967326 /* appTests.xctest */,
-				B4B3F4552FB2682600967326 /* appUITests.xctest */,
+				B4B3F43E2FB2682400967326 /* Utilyze.app */,
+				B4B3F44B2FB2682600967326 /* UtilyzeTests.xctest */,
+				B4B3F4552FB2682600967326 /* UtilyzeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B4B3F43D2FB2682400967326 /* app */ = {
+		B4B3F43D2FB2682400967326 /* Utilyze */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B4B3F45F2FB2682600967326 /* Build configuration list for PBXNativeTarget "app" */;
+			buildConfigurationList = B4B3F45F2FB2682600967326 /* Build configuration list for PBXNativeTarget "Utilyze" */;
 			buildPhases = (
 				B4B3F43A2FB2682400967326 /* Sources */,
 				B4B3F43B2FB2682400967326 /* Frameworks */,
@@ -108,18 +108,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				B4B3F4402FB2682400967326 /* app */,
+				B4B3F4402FB2682400967326 /* Utilyze */,
 			);
-			name = app;
+			name = Utilyze;
 			packageProductDependencies = (
 			);
 			productName = app;
-			productReference = B4B3F43E2FB2682400967326 /* app.app */;
+			productReference = B4B3F43E2FB2682400967326 /* Utilyze.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B4B3F44A2FB2682600967326 /* appTests */ = {
+		B4B3F44A2FB2682600967326 /* UtilyzeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B4B3F4622FB2682600967326 /* Build configuration list for PBXNativeTarget "appTests" */;
+			buildConfigurationList = B4B3F4622FB2682600967326 /* Build configuration list for PBXNativeTarget "UtilyzeTests" */;
 			buildPhases = (
 				B4B3F4472FB2682600967326 /* Sources */,
 				B4B3F4482FB2682600967326 /* Frameworks */,
@@ -131,18 +131,18 @@
 				B4B3F44D2FB2682600967326 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				B4B3F44E2FB2682600967326 /* appTests */,
+				B4B3F44E2FB2682600967326 /* UtilyzeTests */,
 			);
-			name = appTests;
+			name = UtilyzeTests;
 			packageProductDependencies = (
 			);
 			productName = appTests;
-			productReference = B4B3F44B2FB2682600967326 /* appTests.xctest */;
+			productReference = B4B3F44B2FB2682600967326 /* UtilyzeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B4B3F4542FB2682600967326 /* appUITests */ = {
+		B4B3F4542FB2682600967326 /* UtilyzeUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B4B3F4652FB2682600967326 /* Build configuration list for PBXNativeTarget "appUITests" */;
+			buildConfigurationList = B4B3F4652FB2682600967326 /* Build configuration list for PBXNativeTarget "UtilyzeUITests" */;
 			buildPhases = (
 				B4B3F4512FB2682600967326 /* Sources */,
 				B4B3F4522FB2682600967326 /* Frameworks */,
@@ -154,13 +154,13 @@
 				B4B3F4572FB2682600967326 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				B4B3F4582FB2682600967326 /* appUITests */,
+				B4B3F4582FB2682600967326 /* UtilyzeUITests */,
 			);
-			name = appUITests;
+			name = UtilyzeUITests;
 			packageProductDependencies = (
 			);
 			productName = appUITests;
-			productReference = B4B3F4552FB2682600967326 /* appUITests.xctest */;
+			productReference = B4B3F4552FB2682600967326 /* UtilyzeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B4B3F4392FB2682400967326 /* Build configuration list for PBXProject "app" */;
+			buildConfigurationList = B4B3F4392FB2682400967326 /* Build configuration list for PBXProject "Utilyze" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B4B3F43D2FB2682400967326 /* app */,
-				B4B3F44A2FB2682600967326 /* appTests */,
-				B4B3F4542FB2682600967326 /* appUITests */,
+				B4B3F43D2FB2682400967326 /* Utilyze */,
+				B4B3F44A2FB2682600967326 /* UtilyzeTests */,
+				B4B3F4542FB2682600967326 /* UtilyzeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		B4B3F44D2FB2682600967326 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4B3F43D2FB2682400967326 /* app */;
+			target = B4B3F43D2FB2682400967326 /* Utilyze */;
 			targetProxy = B4B3F44C2FB2682600967326 /* PBXContainerItemProxy */;
 		};
 		B4B3F4572FB2682600967326 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B4B3F43D2FB2682400967326 /* app */;
+			target = B4B3F43D2FB2682400967326 /* Utilyze */;
 			targetProxy = B4B3F4562FB2682600967326 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -400,6 +400,7 @@
 				DEVELOPMENT_TEAM = HPX63FBKGY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Utilyze;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -432,6 +433,7 @@
 				DEVELOPMENT_TEAM = HPX63FBKGY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Utilyze;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -472,7 +474,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/app.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/app";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Utilyze.Utilyze/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Utilyze";
 			};
 			name = Debug;
 		};
@@ -494,7 +496,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/app.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/app";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Utilyze.Utilyze/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Utilyze";
 			};
 			name = Release;
 		};
@@ -541,7 +543,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B4B3F4392FB2682400967326 /* Build configuration list for PBXProject "app" */ = {
+		B4B3F4392FB2682400967326 /* Build configuration list for PBXProject "Utilyze" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4B3F45D2FB2682600967326 /* Debug */,
@@ -550,7 +552,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4B3F45F2FB2682600967326 /* Build configuration list for PBXNativeTarget "app" */ = {
+		B4B3F45F2FB2682600967326 /* Build configuration list for PBXNativeTarget "Utilyze" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4B3F4602FB2682600967326 /* Debug */,
@@ -559,7 +561,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4B3F4622FB2682600967326 /* Build configuration list for PBXNativeTarget "appTests" */ = {
+		B4B3F4622FB2682600967326 /* Build configuration list for PBXNativeTarget "UtilyzeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4B3F4632FB2682600967326 /* Debug */,
@@ -568,7 +570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4B3F4652FB2682600967326 /* Build configuration list for PBXNativeTarget "appUITests" */ = {
+		B4B3F4652FB2682600967326 /* Build configuration list for PBXNativeTarget "UtilyzeUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4B3F4662FB2682600967326 /* Debug */,
