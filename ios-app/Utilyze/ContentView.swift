@@ -28,6 +28,8 @@ struct ContentView: View {
     @State private var isRefreshingAlerts = false
     @State private var isSendingTestAlert = false
     @State private var lastUpdatedText = "Not updated yet"
+    @State private var demoStatusMessage = ""
+    @State private var demoStatusIsError = false
 
     var body: some View {
         NavigationStack {
@@ -38,6 +40,8 @@ struct ContentView: View {
                         isRefreshingAlerts: isRefreshingAlerts,
                         isSendingTestAlert: isSendingTestAlert,
                         lastUpdatedText: lastUpdatedText,
+                        statusMessage: demoStatusMessage,
+                        statusIsError: demoStatusIsError,
                         onSendTestAlert: {
                             Task { await sendTestAlert() }
                         },
@@ -106,6 +110,7 @@ struct ContentView: View {
         do {
             isSendingCode = true
             errorMessage = ""
+            demoStatusMessage = ""
             requestId = try await APIClient.shared.startEmailCode(email: email)
             screen = .verify
         } catch {
@@ -118,6 +123,7 @@ struct ContentView: View {
         do {
             isVerifying = true
             errorMessage = ""
+            demoStatusMessage = ""
 
             let response = try await APIClient.shared.verifyEmailCode(
                 email: email,
@@ -139,6 +145,7 @@ struct ContentView: View {
     private func finishOnboarding() async {
         isFinishingSetup = true
         errorMessage = ""
+        demoStatusMessage = ""
 
         do {
             let granted = try await UNUserNotificationCenter.current().requestAuthorization(
@@ -173,10 +180,15 @@ struct ContentView: View {
     private func sendTestAlert() async {
         isSendingTestAlert = true
         errorMessage = ""
+        demoStatusMessage = ""
+        demoStatusIsError = false
 
         let settings = await UNUserNotificationCenter.current().notificationSettings()
         guard settings.authorizationStatus == .authorized || settings.authorizationStatus == .provisional else {
-            errorMessage = "Notifications are not enabled for Utilyze yet. Tap Open Settings and turn on banners."
+            let message = "Notifications are not enabled for Utilyze yet. Tap Open Settings and turn on banners."
+            errorMessage = message
+            demoStatusMessage = message
+            demoStatusIsError = true
             isSendingTestAlert = false
             return
         }
@@ -193,11 +205,28 @@ struct ContentView: View {
         )
 
         do {
-            _ = try await APIClient.shared.publishDemoAlert()
             try await UNUserNotificationCenter.current().add(request)
-            await loadAlerts()
+            demoStatusMessage = "Test alert scheduled. If you do not see a banner, check Focus mode or Notification Center."
+
+            do {
+                let alert = try await APIClient.shared.publishDemoAlert()
+                alerts.insert(alert, at: 0)
+                lastUpdatedText = formattedNow()
+            } catch {
+                let message = "Test notification was scheduled, but the backend demo alert could not be saved. \(error.localizedDescription)"
+                errorMessage = message
+                demoStatusMessage = message
+                demoStatusIsError = true
+                isSendingTestAlert = false
+                return
+            }
+            demoStatusMessage = "Test alert scheduled and saved successfully."
+            demoStatusIsError = false
         } catch {
-            errorMessage = "Could not schedule a local test alert."
+            let message = "Could not schedule a local test alert."
+            errorMessage = message
+            demoStatusMessage = message
+            demoStatusIsError = true
         }
 
         isSendingTestAlert = false
@@ -207,6 +236,8 @@ struct ContentView: View {
         do {
             isRefreshingAlerts = true
             alerts = try await APIClient.shared.resetDemoAlerts()
+            demoStatusMessage = "Demo alerts reset."
+            demoStatusIsError = false
         } catch {
             errorMessage = "Could not reset demo alerts right now."
         }
@@ -230,6 +261,8 @@ struct ContentView: View {
         alerts = []
         errorMessage = ""
         lastUpdatedText = "Not updated yet"
+        demoStatusMessage = ""
+        demoStatusIsError = false
         screen = .welcome
     }
 

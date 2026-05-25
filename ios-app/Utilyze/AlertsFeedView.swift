@@ -11,6 +11,8 @@ struct AlertsFeedView: View {
     let isRefreshingAlerts: Bool
     let isSendingTestAlert: Bool
     let lastUpdatedText: String
+    let statusMessage: String?
+    let statusIsError: Bool
     let onSendTestAlert: () -> Void
     let onRefresh: () async -> Void
     let onClearDemoAlerts: () -> Void
@@ -44,6 +46,12 @@ struct AlertsFeedView: View {
                     Text("Wallet onboarding and email verification are temporarily stubbed while we wait on HandCash. You can still test Utilyze alerts and notification UX right now.")
                         .font(.subheadline)
                         .foregroundStyle(.gray)
+
+                    if let statusMessage, !statusMessage.isEmpty {
+                        Text(statusMessage)
+                            .font(.footnote)
+                            .foregroundStyle(statusIsError ? .red : .black.opacity(0.75))
+                    }
 
                     Button(action: onSendTestAlert) {
                         Text(isSendingTestAlert ? "Sending Test Alert..." : "Send Test Alert")

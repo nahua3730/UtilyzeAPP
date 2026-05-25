@@ -1,5 +1,22 @@
 import Foundation
 
+enum APIClientError: LocalizedError {
+    case invalidResponse
+    case server(statusCode: Int, body: String)
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidResponse:
+            return "The server returned an invalid response."
+        case let .server(statusCode, body):
+            if body.isEmpty {
+                return "Server error (\(statusCode))."
+            }
+            return "Server error (\(statusCode)): \(body)"
+        }
+    }
+}
+
 struct StartEmailCodeResponse: Decodable {
     let requestId: String
 }
@@ -63,7 +80,11 @@ final class APIClient {
         let (data, response) = try await URLSession.shared.data(from: url)
         guard let httpResponse = response as? HTTPURLResponse,
               200..<300 ~= httpResponse.statusCode else {
-            throw URLError(.badServerResponse)
+            let body = String(data: data, encoding: .utf8) ?? ""
+            throw APIClientError.server(
+                statusCode: (response as? HTTPURLResponse)?.statusCode ?? -1,
+                body: body
+            )
         }
 
         let decoded = try JSONDecoder().decode(AlertsFeedResponse.self, from: data)
@@ -108,7 +129,11 @@ final class APIClient {
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse,
               200..<300 ~= httpResponse.statusCode else {
-            throw URLError(.badServerResponse)
+            let body = String(data: data, encoding: .utf8) ?? ""
+            throw APIClientError.server(
+                statusCode: (response as? HTTPURLResponse)?.statusCode ?? -1,
+                body: body
+            )
         }
 
         return try JSONDecoder().decode(Response.self, from: data)
