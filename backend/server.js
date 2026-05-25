@@ -9,6 +9,7 @@ const { PORT = 3000 } = process.env;
 const initialDemoAlerts = [
   {
     id: "alert_001",
+    siteLabel: "Austin Tower · Unit 304",
     severity: "High",
     title: "Possible water leak",
     bodyShort: "Continuous flow detected for 45 minutes",
@@ -20,6 +21,7 @@ const initialDemoAlerts = [
   },
   {
     id: "alert_002",
+    siteLabel: "Austin Tower · Boiler Room",
     severity: "Medium",
     title: "Gas usage anomaly",
     bodyShort: "Usage pattern changed from the normal baseline",
@@ -86,6 +88,9 @@ app.get("/v1/alerts/feed", async (req, res) => {
 });
 
 app.post("/v1/demo/alerts", async (req, res) => {
+  const siteLabel = String(
+    req.body.siteLabel || "Austin Tower · Unit 304"
+  ).trim();
   const severity = String(req.body.severity || "High").trim();
   const title = String(req.body.title || "Demo water leak alert").trim();
   const bodyShort = String(
@@ -102,6 +107,7 @@ app.post("/v1/demo/alerts", async (req, res) => {
 
   const newAlert = {
     id: `alert_${Date.now()}`,
+    siteLabel,
     severity,
     title,
     bodyShort,

@@ -72,6 +72,7 @@ final class APIClient {
 
     func publishDemoAlert() async throws -> AlertItem {
         let payload = [
+            "siteLabel": "Austin Tower · Unit 304",
             "severity": "High",
             "title": "Demo water leak alert",
             "bodyShort": "Possible leak detected from the Utilyze test flow",

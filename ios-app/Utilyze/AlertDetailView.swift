@@ -11,6 +11,10 @@ struct AlertDetailView: View {
 
                     Text(alert.title)
                         .font(.system(size: 30, weight: .bold))
+
+                    Text(alert.siteLabel)
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(.black.opacity(0.7))
                 }
 
                 VStack(alignment: .leading, spacing: 8) {

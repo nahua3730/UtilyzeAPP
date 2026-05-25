@@ -29,6 +29,12 @@ struct AlertsFeedView: View {
         }
     }
 
+    private var summaryText: String {
+        let highCount = alerts.filter { $0.severity.caseInsensitiveCompare("High") == .orderedSame }.count
+        let mediumCount = alerts.filter { $0.severity.caseInsensitiveCompare("Medium") == .orderedSame }.count
+        return "\(alerts.count) total · \(highCount) high · \(mediumCount) medium"
+    }
+
     var body: some View {
         List {
             Section {
@@ -70,6 +76,10 @@ struct AlertsFeedView: View {
                         .font(.subheadline)
                         .foregroundStyle(.gray)
 
+                    Text(summaryText)
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.black.opacity(0.7))
+
                     Picker("Filter", selection: $selectedFilter) {
                         ForEach(Filter.allCases, id: \.self) { filter in
                             Text(filter.rawValue).tag(filter)
@@ -103,6 +113,10 @@ struct AlertsFeedView: View {
                                         Text(alert.title)
                                             .font(.headline)
                                             .foregroundStyle(.black)
+
+                                        Text(alert.siteLabel)
+                                            .font(.caption.weight(.medium))
+                                            .foregroundStyle(.black.opacity(0.7))
 
                                         Text(AlertTimeFormatter.displayText(for: alert.timestamp))
                                             .font(.caption)
