@@ -14,7 +14,7 @@ const initialDemoAlerts = [
     bodyShort: "Continuous flow detected for 45 minutes",
     bodyLong:
       "Utilyze detected unusual continuous water usage at this property. Check nearby fixtures, supply lines, and shutoff access as soon as possible.",
-    timestamp: "Today at 3:42 PM",
+    timestamp: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
     dataSummary:
       '{\n  "rule": "continuous_flow",\n  "duration_minutes": 45\n}',
   },
@@ -25,7 +25,7 @@ const initialDemoAlerts = [
     bodyShort: "Usage pattern changed from the normal baseline",
     bodyLong:
       "Utilyze flagged a gas usage pattern that differs from the recent baseline. Review the site to confirm whether the activity is expected.",
-    timestamp: "Today at 1:18 PM",
+    timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
     dataSummary: '{\n  "rule": "baseline_shift",\n  "utility": "gas"\n}',
   },
 ];
@@ -106,7 +106,7 @@ app.post("/v1/demo/alerts", async (req, res) => {
     title,
     bodyShort,
     bodyLong,
-    timestamp: formattedNow(),
+    timestamp: new Date().toISOString(),
     dataSummary,
   };
 

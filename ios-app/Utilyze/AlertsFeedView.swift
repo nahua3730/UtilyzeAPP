@@ -84,9 +84,9 @@ struct AlertsFeedView: View {
             Section {
                 if filteredAlerts.isEmpty {
                     VStack(spacing: 10) {
-                        Text("No alerts yet")
+                        Text(selectedFilter == .all ? "No alerts yet" : "No \(selectedFilter.rawValue.lowercased()) alerts")
                             .font(.headline)
-                        Text("When Utilyze detects an issue, it will show up here.")
+                        Text(selectedFilter == .all ? "When Utilyze detects an issue, it will show up here." : "Try another filter or send a new demo alert.")
                             .font(.subheadline)
                             .foregroundStyle(.gray)
                             .multilineTextAlignment(.center)
@@ -104,7 +104,7 @@ struct AlertsFeedView: View {
                                             .font(.headline)
                                             .foregroundStyle(.black)
 
-                                        Text(alert.timestamp)
+                                        Text(AlertTimeFormatter.displayText(for: alert.timestamp))
                                             .font(.caption)
                                             .foregroundStyle(.gray)
                                     }
