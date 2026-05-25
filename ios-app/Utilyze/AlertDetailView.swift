@@ -6,8 +6,12 @@ struct AlertDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Text(alert.title)
-                    .font(.system(size: 30, weight: .bold))
+                VStack(alignment: .leading, spacing: 12) {
+                    SeverityBadge(severity: alert.severity)
+
+                    Text(alert.title)
+                        .font(.system(size: 30, weight: .bold))
+                }
 
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Summary")
@@ -44,5 +48,6 @@ struct AlertDetailView: View {
             .padding(24)
         }
         .background(Color.white)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

@@ -53,25 +53,24 @@ struct AlertsFeedView: View {
                         NavigationLink(value: alert) {
                             VStack(alignment: .leading, spacing: 8) {
                                 HStack {
-                                    Text(alert.title)
-                                        .font(.headline)
-                                        .foregroundStyle(.black)
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        Text(alert.title)
+                                            .font(.headline)
+                                            .foregroundStyle(.black)
+
+                                        Text(alert.timestamp)
+                                            .font(.caption)
+                                            .foregroundStyle(.gray)
+                                    }
+
                                     Spacer()
-                                    Text(alert.severity)
-                                        .font(.caption.weight(.semibold))
-                                        .padding(.horizontal, 10)
-                                        .padding(.vertical, 6)
-                                        .background(Color.black.opacity(0.08))
-                                        .clipShape(Capsule())
+                                    SeverityBadge(severity: alert.severity)
                                 }
 
                                 Text(alert.bodyShort)
                                     .font(.subheadline)
                                     .foregroundStyle(.gray)
-
-                                Text(alert.timestamp)
-                                    .font(.caption)
-                                    .foregroundStyle(.gray)
+                                    .multilineTextAlignment(.leading)
                             }
                             .padding(.vertical, 8)
                         }
