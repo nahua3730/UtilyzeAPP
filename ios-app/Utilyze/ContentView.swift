@@ -27,6 +27,7 @@ struct ContentView: View {
     @State private var isFinishingSetup = false
     @State private var isRefreshingAlerts = false
     @State private var isSendingTestAlert = false
+    @State private var lastUpdatedText = "Not updated yet"
 
     var body: some View {
         NavigationStack {
@@ -36,6 +37,7 @@ struct ContentView: View {
                         alerts: alerts,
                         isRefreshingAlerts: isRefreshingAlerts,
                         isSendingTestAlert: isSendingTestAlert,
+                        lastUpdatedText: lastUpdatedText,
                         onSendTestAlert: {
                             Task { await sendTestAlert() }
                         },
@@ -161,6 +163,7 @@ struct ContentView: View {
         do {
             isRefreshingAlerts = true
             alerts = try await APIClient.shared.fetchAlerts(username: storedUsername)
+            lastUpdatedText = formattedNow()
         } catch {
             errorMessage = "Could not load alerts right now."
         }
@@ -226,7 +229,15 @@ struct ContentView: View {
         requestId = ""
         alerts = []
         errorMessage = ""
+        lastUpdatedText = "Not updated yet"
         screen = .welcome
+    }
+
+    private func formattedNow() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return "Updated \(formatter.string(from: Date()))"
     }
 }
 

@@ -1,13 +1,33 @@
 import SwiftUI
 
 struct AlertsFeedView: View {
+    enum Filter: String, CaseIterable {
+        case all = "All"
+        case high = "High"
+        case medium = "Medium"
+    }
+
     let alerts: [AlertItem]
     let isRefreshingAlerts: Bool
     let isSendingTestAlert: Bool
+    let lastUpdatedText: String
     let onSendTestAlert: () -> Void
     let onRefresh: () async -> Void
     let onClearDemoAlerts: () -> Void
     let onReset: () -> Void
+
+    @State private var selectedFilter: Filter = .all
+
+    private var filteredAlerts: [AlertItem] {
+        switch selectedFilter {
+        case .all:
+            return alerts
+        case .high:
+            return alerts.filter { $0.severity.caseInsensitiveCompare("High") == .orderedSame }
+        case .medium:
+            return alerts.filter { $0.severity.caseInsensitiveCompare("Medium") == .orderedSame }
+        }
+    }
 
     var body: some View {
         List {
@@ -36,7 +56,33 @@ struct AlertsFeedView: View {
             .listRowBackground(Color.white)
 
             Section {
-                if alerts.isEmpty {
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Text("System Status")
+                            .font(.headline)
+                        Spacer()
+                        Text(lastUpdatedText)
+                            .font(.caption)
+                            .foregroundStyle(.gray)
+                    }
+
+                    Text("Local notifications and backend demo alerts are active.")
+                        .font(.subheadline)
+                        .foregroundStyle(.gray)
+
+                    Picker("Filter", selection: $selectedFilter) {
+                        ForEach(Filter.allCases, id: \.self) { filter in
+                            Text(filter.rawValue).tag(filter)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                }
+                .padding(.vertical, 8)
+            }
+            .listRowBackground(Color.white)
+
+            Section {
+                if filteredAlerts.isEmpty {
                     VStack(spacing: 10) {
                         Text("No alerts yet")
                             .font(.headline)
@@ -49,7 +95,7 @@ struct AlertsFeedView: View {
                     .padding(.vertical, 32)
                     .listRowBackground(Color.white)
                 } else {
-                    ForEach(alerts) { alert in
+                    ForEach(filteredAlerts) { alert in
                         NavigationLink(value: alert) {
                             VStack(alignment: .leading, spacing: 8) {
                                 HStack {
