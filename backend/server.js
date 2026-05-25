@@ -6,7 +6,7 @@ app.use(express.json());
 
 const { PORT = 3000 } = process.env;
 
-const demoAlerts = [
+const initialDemoAlerts = [
   {
     id: "alert_001",
     severity: "High",
@@ -29,6 +29,8 @@ const demoAlerts = [
     dataSummary: '{\n  "rule": "baseline_shift",\n  "utility": "gas"\n}',
   },
 ];
+
+let demoAlerts = [...initialDemoAlerts];
 
 function formattedNow() {
   return `Today at ${new Date().toLocaleTimeString([], {
@@ -112,6 +114,14 @@ app.post("/v1/demo/alerts", async (req, res) => {
 
   return res.json({
     alert: newAlert,
+  });
+});
+
+app.post("/v1/demo/reset-alerts", async (_req, res) => {
+  demoAlerts = [...initialDemoAlerts];
+
+  return res.json({
+    alerts: demoAlerts,
   });
 });
 

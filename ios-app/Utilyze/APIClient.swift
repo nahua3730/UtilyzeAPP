@@ -18,6 +18,10 @@ struct PublishDemoAlertResponse: Decodable {
     let alert: AlertItem
 }
 
+struct ResetDemoAlertsResponse: Decodable {
+    let alerts: [AlertItem]
+}
+
 final class APIClient {
     static let shared = APIClient()
     private init() {}
@@ -82,6 +86,14 @@ final class APIClient {
         return response.alert
     }
 
+    func resetDemoAlerts() async throws -> [AlertItem] {
+        let response: ResetDemoAlertsResponse = try await post(
+            path: "/v1/demo/reset-alerts",
+            body: EmptyRequestBody()
+        )
+        return response.alerts
+    }
+
     private func post<Response: Decodable, Body: Encodable>(
         path: String,
         body: Body
@@ -101,3 +113,5 @@ final class APIClient {
         return try JSONDecoder().decode(Response.self, from: data)
     }
 }
+
+private struct EmptyRequestBody: Encodable {}

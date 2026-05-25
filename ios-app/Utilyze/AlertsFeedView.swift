@@ -6,6 +6,7 @@ struct AlertsFeedView: View {
     let isSendingTestAlert: Bool
     let onSendTestAlert: () -> Void
     let onRefresh: () async -> Void
+    let onClearDemoAlerts: () -> Void
     let onReset: () -> Void
 
     var body: some View {
@@ -96,6 +97,11 @@ struct AlertsFeedView: View {
             await onRefresh()
         }
         .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Clear Alerts", action: onClearDemoAlerts)
+                    .foregroundStyle(.black)
+            }
+
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Reset", action: onReset)
                     .foregroundStyle(.black)

@@ -42,6 +42,9 @@ struct ContentView: View {
                         onRefresh: {
                             await loadAlerts()
                         },
+                        onClearDemoAlerts: {
+                            Task { await clearDemoAlerts() }
+                        },
                         onReset: resetOnboarding
                     )
                 } else {
@@ -195,6 +198,16 @@ struct ContentView: View {
         }
 
         isSendingTestAlert = false
+    }
+
+    private func clearDemoAlerts() async {
+        do {
+            isRefreshingAlerts = true
+            alerts = try await APIClient.shared.resetDemoAlerts()
+        } catch {
+            errorMessage = "Could not reset demo alerts right now."
+        }
+        isRefreshingAlerts = false
     }
 
     private func openSettings() {
